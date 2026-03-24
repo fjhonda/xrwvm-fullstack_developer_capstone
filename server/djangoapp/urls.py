@@ -8,12 +8,14 @@ from . import views
 app_name = 'djangoapp'
 urlpatterns = [
     # # path for registration
+    path(route='register', view=views.registration, name='register'),
+    path('register/', TemplateView.as_view(template_name="index.html")),
 
     # path for login
     path(route='login', view=views.login_user, name='login'),
     path(route='logout', view=views.logout_request, name='logout'),
-    path(route='register', view=views.registration, name='register'),
     path('login/', TemplateView.as_view(template_name="index.html")),
+
 
     # path for dealer reviews view
 
