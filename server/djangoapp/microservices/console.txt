@@ -1,0 +1,5 @@
+Getting projects...
+OK
+
+Name                               ID                                    Status  Enabled  Selected  Tags                       Region    Resource Group  Age  
+Code Engine - sn-labs-fjmorataya1  ab2e6645-ddc6-4501-a535-03363e310171  active  true     false     fjmorataya1,skillsnetwork  us-south  production      13m  
