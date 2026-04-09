@@ -33,7 +33,7 @@ try {
 
 // Express route to home
 app.get('/', async (req, res) => {
-    res.send("Welcome to the Mongoose API")
+    res.send("Welcome to the Mongoose API");
 });
 
 // Express route to fetch all reviews
@@ -60,7 +60,7 @@ app.get('/fetchReviews/dealer/:id', async (req, res) => {
 app.get('/fetchDealers', async (req, res) => {
     try{
         const dealers = await Dealerships.find();
-        res.json(dealers)
+        res.json(dealers);
     }
     catch(error){
         res.status(500).json({error: 'Error fetching dealerships'});
@@ -70,11 +70,11 @@ app.get('/fetchDealers', async (req, res) => {
 // Express route to fetch Dealers by a particular state
 app.get('/fetchDealers/:state', async (req, res) => {
     try{
-        const dealers = await Dealerships.find({state: req.params.state})
+        const dealers = await Dealerships.find({state: req.params.state});
         res.json(dealers);
     }
     catch(error){
-        res.status(500).json({error: 'Error fetching dealerships by state'})
+        res.status(500).json({error: 'Error fetching dealerships by state'});
     }
 });
 
@@ -82,7 +82,7 @@ app.get('/fetchDealers/:state', async (req, res) => {
 app.get('/fetchDealer/:id', async (req, res) => {
     try{
         const dealers = await Dealerships.find({id: req.params.id});
-        res.json(dealers)
+        res.json(dealers);
     }
     catch(error){
         res.status(500).json({error: 'Error fetching dealerships '+error});
@@ -93,7 +93,7 @@ app.get('/fetchDealer/:id', async (req, res) => {
 app.post('/insert_review', express.raw({ type: '*/*' }), async (req, res) => {
   data = JSON.parse(req.body);
   const documents = await Reviews.find().sort( { id: -1 } );
-  let new_id = documents[0].id+1
+  let new_id = documents[0].id+1;
 
   const review = new Reviews({
 		"id": new_id,
