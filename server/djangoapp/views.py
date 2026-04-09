@@ -18,10 +18,10 @@ def login_user(request):
     data = json.loads(request.body)
     username = data['userName']
     password = data['password']
-    
+
     user = authenticate(username=username, password=password)
     data = {"userName": username}
-    
+
     if user is not None:
         login(request, user)
         data = {"userName": username, "status": "Authenticated"}
@@ -42,7 +42,7 @@ def registration(request):
     first_name = data['firstName']
     last_name = data['lastName']
     email = data['email']
-    
+
     username_exist = False
     try:
         User.objects.get(username=username)
@@ -70,7 +70,7 @@ def get_cars(request):
     count = CarMake.objects.filter().count()
     if count == 0:
         initiate()
-    
+
     car_models = CarModel.objects.select_related('car_make')
     cars = []
     for car_model in car_models:
@@ -99,7 +99,7 @@ def get_dealer_reviews(request, dealer_id):
             response = analyze_review_sentiments(review_detail['review'])
             review_detail['sentiment'] = response['sentiment']
         return JsonResponse({"status": 200, "reviews": reviews})
-    
+
     return JsonResponse({"status": 400, "message": "Bad Request"})
 
 
@@ -108,7 +108,7 @@ def get_dealer_details(request, dealer_id):
         endpoint = f"/fetchDealer/{dealer_id}"
         dealership = get_request(endpoint)
         return JsonResponse({"status": 200, "dealer": dealership})
-    
+
     return JsonResponse({"status": 400, "message": "Bad Request"})
 
 
@@ -120,6 +120,7 @@ def add_review(request):
             return JsonResponse({"status": 200})
         except Exception as e:
             logger.error(f"Error in posting review: {e}")
-            return JsonResponse({"status": 401, "message": "Error in posting review"})
-    
+            return JsonResponse({"status": 401,
+                                 "message": "Error in posting review"})
+
     return JsonResponse({"status": 403, "message": "Unauthorized"})
